@@ -1,0 +1,24 @@
+<section class="home-view">
+    <h1>Enter Player's Names</h1>
+    <form name="playersForm" ng-submit="homeCtrl.createGame()" layout"column">
+        <md-input-container class="md-block" flex>
+            <label>Player 1</label>
+            <input required ng-model="homeCtrl.player1" name="player1">
+            <div ng-messages="playersForm.player1.$error">
+                <div ng-message="required">
+                    Player1's name is missing!
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex>
+            <label>Player 2</label>
+            <input required ng-model="homeCtrl.player2" name="player2">
+            <div ng-messages="playersForm.player2.$error">
+                <div ng-message="required">
+                    Player2's name is missing!
+                </div>
+            </div>
+        </md-input-container>
+        <md-button flex class="md-raised button" type="submit">Start</md-button>
+    </form>
+</section>

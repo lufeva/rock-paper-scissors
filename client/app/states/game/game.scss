@@ -1,0 +1,31 @@
+.game-view{
+    span {
+        display: inline-block;
+    }
+    .round-board{
+        span {
+            margin-right: 18px;
+        }
+        .moves-list{
+            margin-bottom: 25px;
+        }
+    }
+
+    .score-board {
+        padding-top: 10px;
+
+        .item {
+            text-align: center;
+
+        }
+        .subheader {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.010em;
+            line-height: 1.2em;
+            padding: 18px 0;
+        }
+    }
+
+}
+

@@ -1,0 +1,11 @@
+<div class="navbar">
+  <md-content class="md-padding">
+    <md-nav-bar
+        md-selected-nav-item="currentNavItem"
+        nav-bar-aria-label="navigation links">
+        <div ng-repeat="item in $ctrl.menu" ui-sref-active="active">
+            <md-nav-item md-nav-sref="{{item.state}}"> {{item.title}} </md-nav-item>
+        </div>
+    </md-nav-bar>
+  </md-content>
+</div>
