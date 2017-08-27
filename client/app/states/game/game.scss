@@ -9,6 +9,19 @@
         .moves-list{
             margin-bottom: 25px;
         }
+
+        .round-button{
+            text-align: center;
+            margin-top: 15px;
+            .button{
+                width: 42%;
+                color: #ffffff ;
+                background-color: #00254a ;
+                &:hover{
+                    background-color: #3399ff ;
+                }
+            }
+        }
     }
 
     .score-board {

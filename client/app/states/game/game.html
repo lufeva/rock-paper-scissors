@@ -1,17 +1,26 @@
 <section class="game-view">
     <div layout="row" layout-xs="column">
         <div flex class="round-board">
-            <h1>Round #{{gameCtrl.roundNumber}}</h1>
+            <h1>Round # {{gameCtrl.roundNumber}}</h1>
             <h3>Player {{gameCtrl.playerName}}</h3>
-            <span>Select Move:</span>
-            <md-input-container class="moves-list">
-                <label>Moves</label>
-                <md-select ng-model="gameCtrl.selectedMove">
-                    <md-optgroup label="moves">
-                        <md-option ng-value="item" ng-repeat="move in gameCtrl.movesList">{{move}}</md-option>
-                    </md-optgroup>
-                </md-select>
-            </md-input-container>
+            <div layout="row" layout-align="center center">
+                <div flex>
+                    <span>Select Move:</span>
+                </div>
+                <div flex>
+                    <md-input-container class="moves-list">
+                        <label>Moves</label>
+                        <md-select ng-model="gameCtrl.selectedMove">
+                            <md-optgroup label="moves">
+                                <md-option ng-value="move" ng-repeat="move in gameCtrl.movesList">{{move}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="round-button">
+                <md-button class="md-raised button" ng-click="gameCtrl.playerPlays()">Ok</md-button>
+            </div>
         </div>
         <div flex class="score-board">
             <md-toolbar class="md-theme-light">
@@ -26,12 +35,12 @@
                         <div flex class="item subheader">Winner</div>
                         <md-divider></md-divider>
                     </md-list-item>
-                    <md-list-item ng-repeat="winner in gameCtrl.scoreGame">
+                    <md-list-item ng-repeat="winner in gameCtrl.scoreGame track by $index">
                         <div flex class="item">
                             <span>{{$index + 1}}</span>
                         </div>
                         <div flex class="item">
-                            <span>{{winner}}</span>
+                            <span>{{winner !== '' ? winner : 'TIE'}}</span>
                         </div>
                     </md-list-item>
                 </md-list>

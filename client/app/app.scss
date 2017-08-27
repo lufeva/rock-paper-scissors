@@ -28,8 +28,10 @@ $fa-font-path: '/assets/fonts/font-awesome/';
 // Component styles are injected through gulp
 /* inject:scss */
 @import 'main/main';
-@import '/states/home/home';
-@import '/states/game/game';
+@import 'states/game-over/game-over';
+@import 'states/game/game';
+@import 'states/home/home';
+@import 'states/rule-config/rule-config';
 @import '../components/footer/footer';
 @import '../components/navbar/navbar';
 /* endinject */

@@ -1,0 +1,30 @@
+.rule-config {
+    .subheader {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.010em;
+        line-height: 1.2em;
+        padding: 18px 0;
+    }
+
+    .rule-button{
+        margin-top: 25px;
+        .button{
+            width: 22%;
+            color: #ffffff ;
+            background-color: #00254a ;
+            &:hover{
+                background-color: #3399ff ;
+            }
+        }
+    }
+
+    .add-rule{
+        .button{
+            font-size: 1.4em;
+            line-height: 1.5;
+            padding-bottom: 6px;
+            padding-left: 8px;
+        }
+    }
+}

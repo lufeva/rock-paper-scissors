@@ -1,7 +1,7 @@
 'use strict';
 
 import angular from 'angular';
-// import ngAnimate from 'angular-animate';
+import ngAnimate from 'angular-animate';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
@@ -24,6 +24,8 @@ import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import HomeComponent from './states/home/home.component';
 import GameComponent from './states/game/game.component';
+import GameOverComponent from './states/game-over/game-over.component';
+import RuleConfigComponent from './states/rule-config/rule-config.component';
 
 /* Services */
 import ruleService from './commons/services/ruleService/ruleService.service';
@@ -33,17 +35,13 @@ import './app.scss';
 
 angular.module('uruitApp', [
   /* Dependencies */
-  ngCookies, ngResource, ngSanitize, uiRouter, ngMaterial, constants, util,
-  
+  ngCookies, ngResource, ngSanitize, uiRouter, ngMaterial, ngAnimate, constants, util,
   /* Layout Components*/
-  navbar, footer, 
-  
+  navbar, footer,
   /* States */
-  main, HomeComponent, GameComponent,
-
+  main, HomeComponent, GameComponent, GameOverComponent, RuleConfigComponent,
   /* Services */
   ruleService, gameService
-
 ])
   .config(routeConfig);
 

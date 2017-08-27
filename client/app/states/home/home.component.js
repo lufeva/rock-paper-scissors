@@ -4,11 +4,11 @@ const uiRouter = require('angular-ui-router');
 import routes from './home.routes';
 
 export class HomeComponent {
-  
+
   /*@ngInject*/
   constructor($state, $stateParams, gameService) {
     this.$state = $state;
-    this.$stateParams = $stateParams;
+    //this.$stateParams = $stateParams;
     this.gameService = gameService;
   }
 
@@ -17,9 +17,8 @@ export class HomeComponent {
     this.player2 = '';
   }
   createGame() {
-    this.gameService.newGame(this.player1, this.player2).then(result => {
-      this.$stateParams.gameID = result;
-      this.$state.go('game', $stateParams);
+    this.gameService.newGame(this.player1.toUpperCase(), this.player2.toUpperCase()).then(result => {
+      this.$state.go('game', { game: result._id });
     });
   }
 

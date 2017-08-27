@@ -1,0 +1,39 @@
+<section class="rule-config">
+    <md-toolbar class="md-theme-light">
+        <h3 class="md-toolbar-tools">
+            Game Rules
+        </h3>
+    </md-toolbar>
+    <md-content>
+        <md-list>
+            <md-list-item>
+                <div flex class="item subheader">Move</div>
+                <div flex class="item subheader">Kills</div>
+                <md-divider></md-divider>
+            </md-list-item>
+            <md-list-item ng-repeat="rule in ruleConfigCtrl.ruleList track by $index">
+                <div flex class="item">
+                    <span>{{rule.move}}</span>
+                </div>
+                <div flex class="item">
+                    <md-input-container class="moves-list">
+                        <label>Moves</label>
+                        <md-select ng-model="rule.kills">
+                            <md-optgroup label="kills">
+                                <md-option ng-value="move" ng-repeat="move in ruleConfigCtrl.movesList | filter : {$ : '!'+rule.move} track by $index">{{move}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </md-list-item>
+            <md-list-item>
+                <div class="add-rule">
+                    <md-button class="md-fab md-mini button" aria-label="Add Rule">+</md-button>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+    <div class="rule-button">
+        <md-button class="md-raised button" ng-click="gameCtrl.playerPlays()">Save</md-button>
+    </div>
+</section>
