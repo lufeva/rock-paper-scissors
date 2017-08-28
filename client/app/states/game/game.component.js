@@ -61,7 +61,7 @@ export class GameComponent {
     } else {
       let alert = this.$mdDialog.alert({
         title: 'Attention',
-        textContent: 'This is an example of how easy dialogs can be!',
+        textContent: 'You should select a move to play!',
         ok: 'Close'
       });
       this.showAlert(alert);

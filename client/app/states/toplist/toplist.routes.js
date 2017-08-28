@@ -3,8 +3,8 @@
 export default function($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('home', {
-      url: '/',
-      template: '<home></home>'
+    .state('toplist', {
+      url: '/toplist',
+      template: '<toplist></toplist>'
     });
 }

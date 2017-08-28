@@ -25,15 +25,43 @@
                         </md-select>
                     </md-input-container>
                 </div>
+                <div class="rule-button">
+                    <md-button class="md-raised button" ng-click="ruleConfigCtrl.updateRule(rule._id, rule.kills)">Save</md-button>
+                </div>
             </md-list-item>
-            <md-list-item>
+            <md-list-item ng-show="!ruleConfigCtrl.addNewRule">
                 <div class="add-rule">
-                    <md-button class="md-fab md-mini button" aria-label="Add Rule">+</md-button>
+                    <md-button class="md-fab md-mini button" ng-click="ruleConfigCtrl.addNewRule = !ruleConfigCtrl.addNewRule" aria-label="Add Rule">+</md-button>
                 </div>
             </md-list-item>
         </md-list>
     </md-content>
-    <div class="rule-button">
-        <md-button class="md-raised button" ng-click="gameCtrl.playerPlays()">Save</md-button>
-    </div>
+</section>
+<section class="add-new-rule" ng-show="ruleConfigCtrl.addNewRule">
+    <h1>Add New Rule</h1>
+    <form name="ruleConfigCtrl.ruleForm" ng-submit="ruleConfigCtrl.addRule()" layout="row">
+        <div flex>
+            <md-input-container class="md-block new-move" flex>
+                <label>New Move</label>
+                <input name="newMove" required ng-model="ruleConfigCtrl.newRule.move">
+                <div ng-messages="ruleConfigCtrl.ruleForm.newMove.$error">
+                    <div ng-message="required">New move is required</div>
+                </div>
+            </md-input-container>
+        </div>
+        <div flex>
+            <md-input-container class="moves-list">
+                <label>Kills</label>
+                <md-select ng-model="ruleConfigCtrl.newRule.kills">
+                    <md-optgroup label="kills">
+                        <md-option ng-value="move" ng-repeat="move in ruleConfigCtrl.movesList track by $index">{{move}}</md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div class="add-rule-button">
+            <md-button class="md-raised button" type="submit">Add Rule</md-button>
+            <md-button class="md-raised button" ng-click="ruleConfigCtrl.addNewRule = !ruleConfigCtrl.addNewRule">Discard</md-button>
+        </div> 
+    </form>     
 </section>

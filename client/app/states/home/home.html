@@ -3,11 +3,9 @@
     <form name="playersForm" ng-submit="homeCtrl.createGame()" layout"column">
         <md-input-container class="md-block" flex>
             <label>Player 1</label>
-            <input required ng-model="homeCtrl.player1" name="player1">
+            <input name="player1" required ng-model="homeCtrl.player1">
             <div ng-messages="playersForm.player1.$error">
-                <div ng-message="required">
-                    Player1's name is missing!
-                </div>
+                <div ng-message="required">Player1's name is missing!</div>
             </div>
         </md-input-container>
         <md-input-container class="md-block" flex>

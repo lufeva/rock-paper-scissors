@@ -1,0 +1,32 @@
+<section class="game-view">
+    <div layout="row" layout-xs="column">
+        <div flex class="score-board">
+            <md-toolbar class="md-theme-light">
+                <h3 class="md-toolbar-tools">
+                    Top Scores
+                </h3>
+            </md-toolbar>
+            <md-content>
+                <md-list>
+                    <md-list-item>
+                        <div flex class="item subheader">Nº</div>
+                        <div flex class="item subheader">Player</div>
+                        <div flex class="item subheader">Score</div>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                    <md-list-item ng-repeat="element in toplistCtrl.topScores | orderBy:'score' track by $index ">
+                        <div flex class="item">
+                            <span>{{$index + 1}}</span>
+                        </div>
+                        <div flex class="item">
+                            <span>{{element._id}}</span>
+                        </div>
+                        <div flex class="item">
+                            <span>{{element.count}}</span>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </div>
+    </div>
+</section>

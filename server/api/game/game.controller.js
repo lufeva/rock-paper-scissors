@@ -66,7 +66,20 @@ function handleError(res, statusCode) {
 
 // Gets a list of Games
 export function index(req, res) {
-  return Game.find().exec()
+  return Game.aggregate([
+    { "$match": { 
+        winner: { 
+          $exists: true 
+        } 
+      } 
+    },
+    { "$group": { 
+            "_id": '$winner', 
+            "count": { "$sum": 1 }
+      }
+    },
+    { "$sort": { "count": -1 } },
+  ]).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

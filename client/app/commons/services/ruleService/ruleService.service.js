@@ -2,31 +2,48 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function ruleService($q) {
+export function ruleService($q, $http, apiRule) {
 	// AngularJS will instantiate a singleton by calling "new" on this function
   return {
     getmovesList,
-    getRules
+    getRules,
+    updateRules,
+    addNewRule
   };
 
   function getmovesList() {
-    var deferred = $q.defer();
-    deferred.resolve([
+    /*
       'paper', 'scissors', 'rock'
-    ]);
-
-    return deferred.promise;
+    */
+    return getRules().then(result => result.map(rule => rule.move));
   }
 
   function getRules() {
-    var deferred = $q.defer();
-    deferred.resolve([
+    /*
       { move: 'paper', kills: 'rock'},
       { move: 'rock', kills: 'scissors'},
       { move: 'scissors', kills: 'paper'}
-    ]);
+    ]);*/
+    return $http({
+      method: 'GET',
+      url: `${apiRule}`
+    }).then(rule => rule.data);
+  }
 
-    return deferred.promise;
+  function updateRules(ruleID, kills) {
+    return $http({
+      method: 'PUT',
+      url: `${apiRule}${ruleID}`,
+      data: {kills}
+    }).then(game => game.data);
+  }
+
+  function addNewRule(move, kills) {
+    return $http({
+      method: 'POST',
+      url: `${apiRule}`,
+      data: { move, kills }
+    }).then(rule => rule.data);
   }
 }
 

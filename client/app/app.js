@@ -21,11 +21,11 @@ import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 
 /* States*/
-import main from './main/main.component';
 import HomeComponent from './states/home/home.component';
 import GameComponent from './states/game/game.component';
 import GameOverComponent from './states/game-over/game-over.component';
 import RuleConfigComponent from './states/rule-config/rule-config.component';
+import TopListComponent from './states/toplist/toplist.component';
 
 /* Services */
 import ruleService from './commons/services/ruleService/ruleService.service';
@@ -39,7 +39,7 @@ angular.module('uruitApp', [
   /* Layout Components*/
   navbar, footer,
   /* States */
-  main, HomeComponent, GameComponent, GameOverComponent, RuleConfigComponent,
+  HomeComponent, GameComponent, GameOverComponent, RuleConfigComponent, TopListComponent,
   /* Services */
   ruleService, gameService
 ])

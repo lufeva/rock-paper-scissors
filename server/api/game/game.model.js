@@ -1,7 +1,6 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import {registerEvents} from './game.events';
 
 var GameSchema = new mongoose.Schema({
   player1: String,
@@ -11,5 +10,4 @@ var GameSchema = new mongoose.Schema({
   winner: String
 });
 
-registerEvents(GameSchema);
 export default mongoose.model('Game', GameSchema);

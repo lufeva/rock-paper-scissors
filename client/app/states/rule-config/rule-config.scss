@@ -8,7 +8,6 @@
     }
 
     .rule-button{
-        margin-top: 25px;
         .button{
             width: 22%;
             color: #ffffff ;
@@ -19,12 +18,36 @@
         }
     }
 
+    .new-move{
+        margin-bottom: 0px;
+        padding-top: 9px;
+        width: 60%;
+    }
+
     .add-rule{
+        text-align: right;
+        width: 100%;
         .button{
             font-size: 1.4em;
             line-height: 1.5;
             padding-bottom: 6px;
-            padding-left: 8px;
+        }
+    }
+}
+
+.add-new-rule {
+    padding: 23px 10px;
+    .new-move{
+        width: 60%;
+    }
+    .add-rule-button{
+        .button{
+            width: 22%;
+            color: #ffffff ;
+            background-color: #3c1033 ;
+            &:hover{
+                background-color: #886897 ;
+            }
         }
     }
 }

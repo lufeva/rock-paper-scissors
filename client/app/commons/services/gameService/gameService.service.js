@@ -2,21 +2,17 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function gameServiceService($q, ruleService, $http, apiGame, roundsToWin) {
+export function gameServiceService($q, $http, apiGame, ruleService, roundsToWin) {
   return {
     newGame,
     getGameInfo,
     updateGame,
     getRoundWinner,
-    calculateGameWinner
+    calculateGameWinner,
+    getGames
   };
 
   function newGame(player1, player2) {
-    /*let deferred = $q.defer();
-    deferred.resolve({
-      id: '1234'
-    });*/
-
     return $http({
       method: 'POST',
       url: `${apiGame}`,
@@ -53,10 +49,6 @@ export function gameServiceService($q, ruleService, $http, apiGame, roundsToWin)
   }
 
   function updateGame(gameID, roundWinner) {
-    /*let deferred = $q.defer();
-    deferred.resolve(true);
-
-    return deferred.promise;*/
     return $http({
       method: 'PUT',
       url: `${apiGame}winner/${gameID}`,
@@ -80,6 +72,13 @@ export function gameServiceService($q, ruleService, $http, apiGame, roundsToWin)
     } else {
       return $q.when(null);
     }
+  }
+
+  function getGames(){
+    return $http({
+      method: 'GET',
+      url: `${apiGame}`,
+    }).then(game => game.data);
   }
 }
 
