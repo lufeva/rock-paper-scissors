@@ -10,7 +10,6 @@
 
 'use strict';
 
-import jsonpatch from 'fast-json-patch';
 import Rule from './rule.model';
 
 function respondWithResult(res, statusCode) {
@@ -20,19 +19,6 @@ function respondWithResult(res, statusCode) {
       return res.status(statusCode).json(entity);
     }
     return null;
-  };
-}
-
-function patchUpdates(patches) {
-  return function(entity) {
-    try {
-      // eslint-disable-next-line prefer-reflect
-      jsonpatch.apply(entity, patches, /*validate*/ true);
-    } catch(err) {
-      return Promise.reject(err);
-    }
-
-    return entity.save();
   };
 }
 
@@ -93,18 +79,6 @@ export function upsert(req, res) {
   }
   return Rule.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Updates an existing Rule in the DB
-export function patch(req, res) {
-  if(req.body._id) {
-    Reflect.deleteProperty(req.body, '_id');
-  }
-  return Rule.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(patchUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

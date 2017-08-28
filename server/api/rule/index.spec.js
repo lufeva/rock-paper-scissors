@@ -9,14 +9,12 @@ var ruleCtrlStub = {
   show: 'ruleCtrl.show',
   create: 'ruleCtrl.create',
   upsert: 'ruleCtrl.upsert',
-  patch: 'ruleCtrl.patch',
   destroy: 'ruleCtrl.destroy'
 };
 
 var routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
-  patch: sinon.spy(),
   post: sinon.spy(),
   delete: sinon.spy()
 };
@@ -64,14 +62,6 @@ describe('Rule API Router:', function() {
     it('should route to rule.controller.upsert', function() {
       routerStub.put
         .withArgs('/:id', 'ruleCtrl.upsert')
-        .should.have.been.calledOnce;
-    });
-  });
-
-  describe('PATCH /api/rules/:id', function() {
-    it('should route to rule.controller.patch', function() {
-      routerStub.patch
-        .withArgs('/:id', 'ruleCtrl.patch')
         .should.have.been.calledOnce;
     });
   });

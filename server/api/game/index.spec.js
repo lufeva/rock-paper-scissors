@@ -60,10 +60,10 @@ describe('Game API Router:', function() {
     });
   });
 
-  describe('PUT /api/games/:id', function() {
+  describe('PUT /api/games/update/:id', function() {
     it('should route to game.controller.upsert', function() {
       routerStub.put
-        .withArgs('/:id', 'gameCtrl.upsert')
+        .withArgs('/update/:id', 'gameCtrl.upsert')
         .should.have.been.calledOnce;
     });
   });

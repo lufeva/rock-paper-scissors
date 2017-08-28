@@ -74,7 +74,7 @@ export function gameServiceService($q, $http, apiGame, ruleService, roundsToWin)
     }
   }
 
-  function getGames(){
+  function getGames() {
     return $http({
       method: 'GET',
       url: `${apiGame}`,

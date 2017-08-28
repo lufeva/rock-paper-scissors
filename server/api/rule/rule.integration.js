@@ -35,8 +35,7 @@ describe('Rule API:', function() {
       request(app)
         .post('/api/rules')
         .send({
-          name: 'New Rule',
-          info: 'This is the brand new rule!!!'
+          kills: 'rock'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -50,8 +49,7 @@ describe('Rule API:', function() {
     });
 
     it('should respond with the newly created rule', function() {
-      newRule.name.should.equal('New Rule');
-      newRule.info.should.equal('This is the brand new rule!!!');
+      newRule.kills.should.equal('rock');
     });
   });
 
@@ -77,8 +75,7 @@ describe('Rule API:', function() {
     });
 
     it('should respond with the requested rule', function() {
-      rule.name.should.equal('New Rule');
-      rule.info.should.equal('This is the brand new rule!!!');
+      rule.kills.should.equal('rock');
     });
   });
 
@@ -89,8 +86,7 @@ describe('Rule API:', function() {
       request(app)
         .put(`/api/rules/${newRule._id}`)
         .send({
-          name: 'Updated Rule',
-          info: 'This is the updated rule!!!'
+          kills: 'paper'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -108,8 +104,7 @@ describe('Rule API:', function() {
     });
 
     it('should respond with the updated rule', function() {
-      updatedRule.name.should.equal('Updated Rule');
-      updatedRule.info.should.equal('This is the updated rule!!!');
+      updatedRule.kills.should.equal('paper');
     });
 
     it('should respond with the updated rule on a subsequent GET', function(done) {
@@ -123,42 +118,10 @@ describe('Rule API:', function() {
           }
           let rule = res.body;
 
-          rule.name.should.equal('Updated Rule');
-          rule.info.should.equal('This is the updated rule!!!');
+          rule.kills.should.equal('paper');
 
           done();
         });
-    });
-  });
-
-  describe('PATCH /api/rules/:id', function() {
-    var patchedRule;
-
-    beforeEach(function(done) {
-      request(app)
-        .patch(`/api/rules/${newRule._id}`)
-        .send([
-          { op: 'replace', path: '/name', value: 'Patched Rule' },
-          { op: 'replace', path: '/info', value: 'This is the patched rule!!!' }
-        ])
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if(err) {
-            return done(err);
-          }
-          patchedRule = res.body;
-          done();
-        });
-    });
-
-    afterEach(function() {
-      patchedRule = {};
-    });
-
-    it('should respond with the patched rule', function() {
-      patchedRule.name.should.equal('Patched Rule');
-      patchedRule.info.should.equal('This is the patched rule!!!');
     });
   });
 

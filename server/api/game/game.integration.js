@@ -35,8 +35,8 @@ describe('Game API:', function() {
       request(app)
         .post('/api/games')
         .send({
-          name: 'New Game',
-          info: 'This is the brand new game!!!'
+          player1: 'Juan',
+          player2: 'Pedro'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -50,8 +50,8 @@ describe('Game API:', function() {
     });
 
     it('should respond with the newly created game', function() {
-      newGame.name.should.equal('New Game');
-      newGame.info.should.equal('This is the brand new game!!!');
+      newGame.player1.should.equal('Juan');
+      newGame.player2.should.equal('Pedro');
     });
   });
 
@@ -77,20 +77,19 @@ describe('Game API:', function() {
     });
 
     it('should respond with the requested game', function() {
-      game.name.should.equal('New Game');
-      game.info.should.equal('This is the brand new game!!!');
+      game.player1.should.equal('Juan');
+      game.player2.should.equal('Pedro');
     });
   });
 
-  describe('PUT /api/games/:id', function() {
+  describe('PUT /api/games/update/:id', function() {
     var updatedGame;
 
     beforeEach(function(done) {
       request(app)
-        .put(`/api/games/${newGame._id}`)
+        .put(`/api/games/update/${newGame._id}`)
         .send({
-          name: 'Updated Game',
-          info: 'This is the updated game!!!'
+          winner: 'Juan'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -108,8 +107,7 @@ describe('Game API:', function() {
     });
 
     it('should respond with the updated game', function() {
-      updatedGame.name.should.equal('Updated Game');
-      updatedGame.info.should.equal('This is the updated game!!!');
+      updatedGame.winner.should.equal('Juan');
     });
 
     it('should respond with the updated game on a subsequent GET', function(done) {
@@ -123,42 +121,10 @@ describe('Game API:', function() {
           }
           let game = res.body;
 
-          game.name.should.equal('Updated Game');
-          game.info.should.equal('This is the updated game!!!');
+          game.winner.should.equal('Juan');
 
           done();
         });
-    });
-  });
-
-  describe('PATCH /api/games/:id', function() {
-    var patchedGame;
-
-    beforeEach(function(done) {
-      request(app)
-        .patch(`/api/games/${newGame._id}`)
-        .send([
-          { op: 'replace', path: '/name', value: 'Patched Game' },
-          { op: 'replace', path: '/info', value: 'This is the patched game!!!' }
-        ])
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if(err) {
-            return done(err);
-          }
-          patchedGame = res.body;
-          done();
-        });
-    });
-
-    afterEach(function() {
-      patchedGame = {};
-    });
-
-    it('should respond with the patched game', function() {
-      patchedGame.name.should.equal('Patched Game');
-      patchedGame.info.should.equal('This is the patched game!!!');
     });
   });
 
